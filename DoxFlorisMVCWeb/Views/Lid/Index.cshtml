@@ -1,0 +1,83 @@
+@model IEnumerable<DoxFlorisMVCWeb.Models.Lid>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.voornaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.achternaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.geboortedatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.straat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.huisnummer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.postcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.land)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefoon)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.voornaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.achternaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.geboortedatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.straat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.huisnummer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.postcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.land)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoon)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

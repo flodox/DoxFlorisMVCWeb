@@ -1,0 +1,73 @@
+@model DoxFlorisMVCWeb.Models.Lid
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Lid</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="voornaam" class="control-label"></label>
+                <input asp-for="voornaam" class="form-control" />
+                <span asp-validation-for="voornaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="achternaam" class="control-label"></label>
+                <input asp-for="achternaam" class="form-control" />
+                <span asp-validation-for="achternaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geboortedatum" class="control-label"></label>
+                <input asp-for="geboortedatum" class="form-control" />
+                <span asp-validation-for="geboortedatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="straat" class="control-label"></label>
+                <input asp-for="straat" class="form-control" />
+                <span asp-validation-for="straat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="huisnummer" class="control-label"></label>
+                <input asp-for="huisnummer" class="form-control" />
+                <span asp-validation-for="huisnummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="postcode" class="control-label"></label>
+                <input asp-for="postcode" class="form-control" />
+                <span asp-validation-for="postcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="land" class="control-label"></label>
+                <input asp-for="land" class="form-control" />
+                <span asp-validation-for="land" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefoon" class="control-label"></label>
+                <input asp-for="telefoon" class="form-control" />
+                <span asp-validation-for="telefoon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
