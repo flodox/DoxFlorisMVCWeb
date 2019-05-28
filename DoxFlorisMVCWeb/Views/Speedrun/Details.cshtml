@@ -1,0 +1,48 @@
+@model DoxFlorisMVCWeb.Models.Speedrun
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Speedrun</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.snelheid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.snelheid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.datum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.datum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.plank)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.plank)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.zeil)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.zeil)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lid.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
