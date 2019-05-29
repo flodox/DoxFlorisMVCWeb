@@ -1,4 +1,4 @@
-@model DoxFlorisMVCWeb.Models.Lid
+@model DoxFlorisMVCWeb.ViewModels.CreateLidViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_Layout";
@@ -14,49 +14,49 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="voornaam" class="control-label"></label>
-                <input asp-for="voornaam" class="form-control" />
-                <span asp-validation-for="voornaam" class="text-danger"></span>
+                <label asp-for="Lid.voornaam" class="control-label"></label>
+                <input asp-for="Lid.voornaam" class="form-control" />
+                <span asp-validation-for="Lid.voornaam" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="achternaam" class="control-label"></label>
-                <input asp-for="achternaam" class="form-control" />
-                <span asp-validation-for="achternaam" class="text-danger"></span>
+                <label asp-for="Lid.achternaam" class="control-label"></label>
+                <input asp-for="Lid.achternaam" class="form-control" />
+                <span asp-validation-for="Lid.achternaam" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="geboortedatum" class="control-label"></label>
-                <input asp-for="geboortedatum" class="form-control" />
-                <span asp-validation-for="geboortedatum" class="text-danger"></span>
+                <label asp-for="Lid.geboortedatum" class="control-label"></label>
+                <input asp-for="Lid.geboortedatum" class="form-control" />
+                <span asp-validation-for="Lid.geboortedatum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="straat" class="control-label"></label>
-                <input asp-for="straat" class="form-control" />
-                <span asp-validation-for="straat" class="text-danger"></span>
+                <label asp-for="Lid.straat" class="control-label"></label>
+                <input asp-for="Lid.straat" class="form-control" />
+                <span asp-validation-for="Lid.straat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="huisnummer" class="control-label"></label>
-                <input asp-for="huisnummer" class="form-control" />
-                <span asp-validation-for="huisnummer" class="text-danger"></span>
+                <label asp-for="Lid.huisnummer" class="control-label"></label>
+                <input asp-for="Lid.huisnummer" class="form-control" />
+                <span asp-validation-for="Lid.huisnummer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="postcode" class="control-label"></label>
-                <input asp-for="postcode" class="form-control" />
-                <span asp-validation-for="postcode" class="text-danger"></span>
+                <label asp-for="Lid.postcode" class="control-label"></label>
+                <input asp-for="Lid.postcode" class="form-control" />
+                <span asp-validation-for="Lid.postcode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="land" class="control-label"></label>
-                <input asp-for="land" class="form-control" />
-                <span asp-validation-for="land" class="text-danger"></span>
+                <label asp-for="Lid.land" class="control-label"></label>
+                <input asp-for="Lid.land" class="form-control" />
+                <span asp-validation-for="Lid.land" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
-                <input asp-for="email" class="form-control" />
-                <span asp-validation-for="email" class="text-danger"></span>
+                <label asp-for="Lid.email" class="control-label"></label>
+                <input asp-for="Lid.email" class="form-control" />
+                <span asp-validation-for="Lid.email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="telefoon" class="control-label"></label>
-                <input asp-for="telefoon" class="form-control" />
-                <span asp-validation-for="telefoon" class="text-danger"></span>
+                <label asp-for="Lid.telefoon" class="control-label"></label>
+                <input asp-for="Lid.telefoon" class="form-control" />
+                <span asp-validation-for="Lid.telefoon" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

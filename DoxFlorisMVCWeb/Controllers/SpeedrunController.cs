@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoxFlorisMVCWeb.Data;
 using DoxFlorisMVCWeb.Models;
+using DoxFlorisMVCWeb.ViewModels;
 
 namespace DoxFlorisMVCWeb.Controllers
 {
@@ -22,8 +23,9 @@ namespace DoxFlorisMVCWeb.Controllers
         // GET: Speedrun
         public async Task<IActionResult> Index()
         {
-            var doxFlorisMVCWebContext = _context.Speedruns.Include(s => s.lid);
-            return View(await doxFlorisMVCWebContext.ToListAsync());
+            var viewModel = new ListSpeedrunViewModel();
+            viewModel.Speedruns = await _context.Speedruns.Include(s => s.lid).ToListAsync();
+            return View(viewModel);
         }
 
         // GET: Speedrun/Details/5
@@ -48,8 +50,10 @@ namespace DoxFlorisMVCWeb.Controllers
         // GET: Speedrun/Create
         public IActionResult Create()
         {
-            ViewData["lidId"] = new SelectList(_context.Leden, "Id", "Id");
-            return View();
+            var viewModel = new CreateSpeedrunViewModels();
+            viewModel.Speedrun = new Speedrun();       
+            viewModel.Leden = new SelectList(_context.Leden, "Id", "Id");
+            return View(viewModel);
         }
 
         // POST: Speedrun/Create
@@ -57,16 +61,16 @@ namespace DoxFlorisMVCWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,snelheid,datum,plank,zeil,lidId")] Speedrun speedrun)
+        public async Task<IActionResult> Create(CreateSpeedrunViewModels viewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(speedrun);
+                _context.Add(viewModel.Speedrun);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["lidId"] = new SelectList(_context.Leden, "Id", "Id", speedrun.lidId);
-            return View(speedrun);
+            viewModel.Leden= new SelectList(_context.Leden, "Id", "Id");
+            return View(viewModel);
         }
 
         // GET: Speedrun/Edit/5

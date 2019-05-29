@@ -1,4 +1,4 @@
-@model IEnumerable<DoxFlorisMVCWeb.Models.Lid>
+@model DoxFlorisMVCWeb.ViewModels.ListLidViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
     @{
     Layout = "_Layout";
@@ -10,41 +10,53 @@
     <p>
         <a asp-action="Create">Create New</a>
     </p>
+
+    <form asp-controller="Lid" asp-action="Search" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Zoek op Naam:
+                <input asp-for="NaamSearch" />
+                <input type="submit" value="Zoeken" class="btn btn-default" />
+                <a asp-controller="Bestelling" asp-action="Index">Terug naar volledige lijst</a>
+            </p>
+        </div>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.voornaam)
+                    @Html.DisplayNameFor(model => model.Leden[0].voornaam)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.achternaam)
+                    @Html.DisplayNameFor(model => model.Leden[0].achternaam)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.geboortedatum)
+                    @Html.DisplayNameFor(model => model.Leden[0].geboortedatum)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.straat)
+                    @Html.DisplayNameFor(model => model.Leden[0].straat)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.huisnummer)
+                    @Html.DisplayNameFor(model => model.Leden[0].huisnummer)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.postcode)
+                    @Html.DisplayNameFor(model => model.Leden[0].postcode)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.land)
+                    @Html.DisplayNameFor(model => model.Leden[0].land)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.email)
+                    @Html.DisplayNameFor(model => model.Leden[0].email)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.telefoon)
+                    @Html.DisplayNameFor(model => model.Leden[0].telefoon)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model) {
+            @foreach (var item in Model.Leden) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.voornaam)

@@ -1,4 +1,4 @@
-@model IEnumerable<DoxFlorisMVCWeb.Models.Speedrun>
+@model DoxFlorisMVCWeb.ViewModels.ListSpeedrunViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
     @{
     Layout = "_Layout";
@@ -14,25 +14,25 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.snelheid)
+                    @Html.DisplayNameFor(model => model.Speedruns[0].snelheid)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.datum)
+                    @Html.DisplayNameFor(model => model.Speedruns[0].datum)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.plank)
+                    @Html.DisplayNameFor(model => model.Speedruns[0].plank)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.zeil)
+                    @Html.DisplayNameFor(model => model.Speedruns[0].zeil)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.lid)
+                    @Html.DisplayNameFor(model => model.Speedruns[0].lid)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model) {
+            @foreach (var item in Model.Speedruns) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.snelheid)

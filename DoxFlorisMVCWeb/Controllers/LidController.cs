@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoxFlorisMVCWeb.Data;
 using DoxFlorisMVCWeb.Models;
+using DoxFlorisMVCWeb.ViewModels;
 
 namespace DoxFlorisMVCWeb.Controllers
 {
@@ -22,8 +23,25 @@ namespace DoxFlorisMVCWeb.Controllers
         // GET: Lid
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Leden.ToListAsync());
+            var viewModel = new ListLidViewModel();
+            viewModel.Leden = await _context.Leden.ToListAsync();
+            return View(viewModel);
         }
+
+        //GET: Leden gefilterd op naam
+
+            public async Task<IActionResult> Search(ListLidViewModel viewModel)
+        {
+            if (!string.IsNullOrEmpty(viewModel.NaamSearch))
+            {
+                viewModel.Leden = await _context.Leden.Where(l => l.achternaam.StartsWith(viewModel.NaamSearch)).ToListAsync();
+            }
+            else
+            {
+                viewModel.Leden = await _context.Leden.ToListAsync();
+            }
+            return View("Index", viewModel);
+        } 
 
         // GET: Lid/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -46,7 +64,10 @@ namespace DoxFlorisMVCWeb.Controllers
         // GET: Lid/Create
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new CreateLidViewModel();
+            viewModel.Lid = new Lid();
+            
+            return View(viewModel);
         }
 
         // POST: Lid/Create
@@ -54,15 +75,16 @@ namespace DoxFlorisMVCWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,voornaam,achternaam,geboortedatum,straat,huisnummer,postcode,land,email,telefoon")] Lid lid)
+        public async Task<IActionResult> Create(CreateLidViewModel viewmodel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(lid);
+                _context.Add(viewmodel.Lid);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(lid);
+            
+            return View(viewmodel);
         }
 
         // GET: Lid/Edit/5

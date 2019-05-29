@@ -1,4 +1,4 @@
-@model DoxFlorisMVCWeb.Models.Speedrun
+@model DoxFlorisMVCWeb.ViewModels.CreateSpeedrunViewModels
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_Layout";
@@ -14,28 +14,28 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="snelheid" class="control-label"></label>
-                <input asp-for="snelheid" class="form-control" />
-                <span asp-validation-for="snelheid" class="text-danger"></span>
+                <label asp-for="Speedrun.snelheid" class="control-label"></label>
+                <input asp-for="Speedrun.snelheid" class="form-control" />
+                <span asp-validation-for="Speedrun.snelheid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="datum" class="control-label"></label>
-                <input asp-for="datum" class="form-control" />
-                <span asp-validation-for="datum" class="text-danger"></span>
+                <label asp-for="Speedrun.datum" class="control-label"></label>
+                <input asp-for="Speedrun.datum" class="form-control" />
+                <span asp-validation-for="Speedrun.datum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="plank" class="control-label"></label>
-                <input asp-for="plank" class="form-control" />
-                <span asp-validation-for="plank" class="text-danger"></span>
+                <label asp-for="Speedrun.plank" class="control-label"></label>
+                <input asp-for="Speedrun.plank" class="form-control" />
+                <span asp-validation-for="Speedrun.plank" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="zeil" class="control-label"></label>
-                <input asp-for="zeil" class="form-control" />
-                <span asp-validation-for="zeil" class="text-danger"></span>
+                <label asp-for="Speedrun.zeil" class="control-label"></label>
+                <input asp-for="Speedrun.zeil" class="form-control" />
+                <span asp-validation-for="Speedrun.zeil" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="lidId" class="control-label"></label>
-                <select asp-for="lidId" class="form-control" asp-items="ViewBag.lidId"></select>
+                <label asp-for="Speedrun.lidId" class="control-label"></label>
+                <select asp-for="Speedrun.lidId" class="form-control" asp-items="ViewBag.lidId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
