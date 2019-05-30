@@ -52,7 +52,7 @@ namespace DoxFlorisMVCWeb.Controllers
         {
             var viewModel = new CreateSpeedrunViewModels();
             viewModel.Speedrun = new Speedrun();       
-            viewModel.Leden = new SelectList(_context.Leden, "Id", "Id");
+            viewModel.Leden = new SelectList(_context.Leden, "Id", "voornaam");
             return View(viewModel);
         }
 

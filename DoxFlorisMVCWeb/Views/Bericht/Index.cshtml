@@ -1,35 +1,36 @@
-@model IEnumerable<DoxFlorisMVCWeb.Models.Bericht>
+@model DoxFlorisMVCWeb.ViewModels.ListBerichtViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-    @{
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
-    }
+}
 
-    <h1>Index</h1>
+<h1>Index</h1>
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.titel)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.inhoud)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.datum)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.lid)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Berichten[0].titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Berichten[0].inhoud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Berichten[0].datum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Berichten[0].lid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Berichten)
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.titel)
@@ -49,6 +50,6 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
-}
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>

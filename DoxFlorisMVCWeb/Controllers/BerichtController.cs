@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoxFlorisMVCWeb.Data;
 using DoxFlorisMVCWeb.Models;
+using DoxFlorisMVCWeb.ViewModels;
 
 namespace DoxFlorisMVCWeb.Controllers
 {
@@ -22,8 +23,9 @@ namespace DoxFlorisMVCWeb.Controllers
         // GET: Bericht
         public async Task<IActionResult> Index()
         {
-            var doxFlorisMVCWebContext = _context.Berichten.Include(b => b.lid);
-            return View(await doxFlorisMVCWebContext.ToListAsync());
+            var viewModel = new ListBerichtViewModel();
+            viewModel.Berichten = await _context.Berichten.Include(b => b.lid).ToListAsync();
+            return View(viewModel);
         }
 
         // GET: Bericht/Details/5
@@ -48,8 +50,10 @@ namespace DoxFlorisMVCWeb.Controllers
         // GET: Bericht/Create
         public IActionResult Create()
         {
-            ViewData["lidId"] = new SelectList(_context.Leden, "Id", "Id");
-            return View();
+            var viewModel = new CreateBerichtViewModel();
+            viewModel.Bericht = new Bericht();
+            viewModel.Leden = new SelectList(_context.Leden, "Id", "voornaam");
+            return View(viewModel);
         }
 
         // POST: Bericht/Create
@@ -57,16 +61,16 @@ namespace DoxFlorisMVCWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,titel,inhoud,datum,lidId")] Bericht bericht)
+        public async Task<IActionResult> Create(CreateBerichtViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(bericht);
+                _context.Add(viewModel.Bericht);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["lidId"] = new SelectList(_context.Leden, "Id", "Id", bericht.lidId);
-            return View(bericht);
+            viewModel.Leden = new SelectList(_context.Leden, "Id", "Id");
+            return View(viewModel);
         }
 
         // GET: Bericht/Edit/5
