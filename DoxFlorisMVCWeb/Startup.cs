@@ -27,7 +27,8 @@ namespace DoxFlorisMVCWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDefaultIdentity<IdentityUser>().AddDefaultUI(Microsoft.AspNetCore.Identity.UI.UIFramework.Bootstrap4).AddEntityFrameworkStores<DoxFlorisMVCWebContext>();
+            
+            services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>().AddDefaultUI(Microsoft.AspNetCore.Identity.UI.UIFramework.Bootstrap4).AddEntityFrameworkStores<DoxFlorisMVCWebContext>();
             services.AddDbContext<DoxFlorisMVCWebContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DoxFlorisMVCWebConnection")));
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -35,13 +36,14 @@ namespace DoxFlorisMVCWeb
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -64,7 +66,39 @@ namespace DoxFlorisMVCWeb
                     name: "default",
                     template: "{controller}/{action=Index}");
         });
-    }
+
+            CreateUserRoles(services).Wait();
+
+
+        }
+
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var Context = serviceProvider.GetRequiredService<DoxFlorisMVCWebContext>();
+
+            IdentityResult roleResult;
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if(!roleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            var user = Context.Users.FirstOrDefault(u => u.Email == "admin@gmail.com");
+            if( user != null)
+            {
+                var roles = Context.UserRoles;
+                var adminRole = Context.Roles.FirstOrDefault(r => r.Name == "Admin");
+                if(adminRole != null)
+                {
+                    if(!roles.Any(ur => ur.UserId == user.Id && ur.RoleId == adminRole.Id))
+                    {
+                        roles.Add(new IdentityUserRole<string>() { UserId = user.Id, RoleId = adminRole.Id });
+                        Context.SaveChanges();
+                    }
+                }
+            }
+        }
         
 }
     }

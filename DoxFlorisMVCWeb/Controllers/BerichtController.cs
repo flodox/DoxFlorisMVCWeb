@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using DoxFlorisMVCWeb.Data;
 using DoxFlorisMVCWeb.Models;
 using DoxFlorisMVCWeb.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoxFlorisMVCWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BerichtController : Controller
     {
         private readonly DoxFlorisMVCWebContext _context;
@@ -21,6 +23,8 @@ namespace DoxFlorisMVCWeb.Controllers
         }
 
         // GET: Bericht
+        [AllowAnonymous]
+
         public async Task<IActionResult> Index()
         {
             var viewModel = new ListBerichtViewModel();
@@ -29,6 +33,8 @@ namespace DoxFlorisMVCWeb.Controllers
         }
 
         // GET: Bericht/Details/5
+        [AllowAnonymous]
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +54,7 @@ namespace DoxFlorisMVCWeb.Controllers
         }
 
         // GET: Bericht/Create
+        
         public IActionResult Create()
         {
             var viewModel = new CreateBerichtViewModel();
@@ -60,6 +67,7 @@ namespace DoxFlorisMVCWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+       
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateBerichtViewModel viewModel)
         {

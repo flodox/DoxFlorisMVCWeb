@@ -19,8 +19,8 @@ namespace DoxFlorisMVCWeb.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("DoxFlorisMVCWebContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>()
-                    .AddEntityFrameworkStores<DoxFlorisMVCWebContext>();
+               // services.AddDefaultIdentity<IdentityUser>()
+                 //   .AddEntityFrameworkStores<DoxFlorisMVCWebContext>();
             });
         }
     }
