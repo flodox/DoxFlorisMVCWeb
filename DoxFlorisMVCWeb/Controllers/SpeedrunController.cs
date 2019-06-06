@@ -8,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using DoxFlorisMVCWeb.Data;
 using DoxFlorisMVCWeb.Models;
 using DoxFlorisMVCWeb.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoxFlorisMVCWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SpeedrunController : Controller
     {
+        
         private readonly DoxFlorisMVCWebContext _context;
 
         public SpeedrunController(DoxFlorisMVCWebContext context)
@@ -21,6 +24,7 @@ namespace DoxFlorisMVCWeb.Controllers
         }
 
         // GET: Speedrun
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var viewModel = new ListSpeedrunViewModel();
@@ -29,6 +33,7 @@ namespace DoxFlorisMVCWeb.Controllers
         }
 
         // GET: Speedrun/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
