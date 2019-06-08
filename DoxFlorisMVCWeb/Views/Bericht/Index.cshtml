@@ -10,6 +10,28 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@foreach (var item in Model.Berichten)
+{
+    <div class="row">
+        <div class="col-md-7">
+            <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+            </a>
+        </div>
+        <div class="col-md-5">
+            <h3> @Html.DisplayFor(modelItem => item.titel)</h3>
+            <h6> @Html.DisplayFor(modelItem => item.datum)</h6>
+            <h6>Door  @Html.DisplayFor(modelItem => item.lid.voornaam)  @Html.DisplayFor(modelItem => item.lid.achternaam)</h6>
+  
+            <p>  @Html.DisplayFor(modelItem => item.inhoud)</p>
+
+        </div>
+    </div>
+
+    <hr>
+}
+
 <table class="table">
     <thead>
         <tr>

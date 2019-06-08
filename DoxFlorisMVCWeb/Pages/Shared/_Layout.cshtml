@@ -29,24 +29,18 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Bericht" asp-action="Index">Nieuws</a>
+                    </li>
                     <partial name="_LoginPartial" />
                 </ul>
-                </div>
+             </div>
         </nav>
        
-
-
-
-
-
-
-
-
         <div>
             <partial name="_CookieConsentPartial" />
             <main role="main" class="pb-3">
-                <div class="container">
-                   
+                <div class="container">                
                     @RenderBody()
                 </div>
             </main>
