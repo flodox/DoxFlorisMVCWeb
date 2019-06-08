@@ -84,7 +84,7 @@ namespace DoxFlorisMVCWeb
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            var user = Context.Users.FirstOrDefault(u => u.Email == "admin@gmail.com");
+            var user = Context.Users.FirstOrDefault(u => u.Email == "admin1@gmail.com");
             if( user != null)
             {
                 var roles = Context.UserRoles;

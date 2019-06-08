@@ -23,6 +23,21 @@ namespace DoxFlorisMVCWeb.Controllers
             _context = context;
         }
 
+
+
+        //GET: Speedrun sorteer op snelheid
+        [AllowAnonymous]
+        public async Task<IActionResult> Snelheid(ListSpeedrunViewModel viewModel)
+        {
+           
+            
+                viewModel.Speedruns = await _context.Speedruns.OrderByDescending(s => s.snelheid).Include(s => s.lid).ToListAsync();
+          
+            
+            return View("Index", viewModel);
+        }
+
+
         // GET: Speedrun
         [AllowAnonymous]
         public async Task<IActionResult> Index()

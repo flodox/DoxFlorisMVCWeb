@@ -5,10 +5,13 @@
     ViewData["Title"] = "Index";
     }
 
-    <h1>Index</h1>
+    <h1>Leden</h1>
 
     <p>
-        <a asp-action="Create">Create New</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create">Create New</a>
+        }
     </p>
 
     <form asp-controller="Lid" asp-action="Search" method="get">
@@ -16,8 +19,8 @@
             <p>
                 Zoek op Naam:
                 <input asp-for="NaamSearch" />
-                <input type="submit" value="Zoeken" class="btn btn-default" />
-                <a asp-controller="Bestelling" asp-action="Index">Terug naar volledige lijst</a>
+                <input type="submit" value="Zoeken" class="btn btn-primary" />
+                <a asp-controller="Lid" asp-action="Index">Terug naar volledige lijst</a>
             </p>
         </div>
     </form>
@@ -25,72 +28,48 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].voornaam)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].achternaam)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].geboortedatum)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].straat)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].huisnummer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].postcode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].land)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Leden[0].telefoon)
-                </th>
-                <th></th>
+                <th scope="col">Voornaam</th>
+                <th scope="col">Achternaam</th>
+                <th scope="col">Geboortedatum</th>
+                <th scope="col">straat</th>
+                <th scope="col">huisnummer</th>
+                <th scope="col">postcode</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Leden) {
+            @foreach (var item in Model.Leden)
+            {
             <tr>
-                <td>
+                <td scope="row">
                     @Html.DisplayFor(modelItem => item.voornaam)
                 </td>
-                <td>
+
+                <td scope="row">
                     @Html.DisplayFor(modelItem => item.achternaam)
                 </td>
-                <td>
+                <td scope="row">
                     @Html.DisplayFor(modelItem => item.geboortedatum)
                 </td>
-                <td>
+                <td scope="row">
                     @Html.DisplayFor(modelItem => item.straat)
                 </td>
-                <td>
+                <td scope="row">
                     @Html.DisplayFor(modelItem => item.huisnummer)
                 </td>
-                <td>
+                <td scope="row">
                     @Html.DisplayFor(modelItem => item.postcode)
                 </td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.land)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefoon)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
-}
+            }
         </tbody>
     </table>

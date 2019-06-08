@@ -563,8 +563,7 @@ pre code {
 
 .container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 15px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 3%;
@@ -723,6 +722,8 @@ pre code {
   flex: 0 0 83.333333%;
   max-width: 83.333333%;
 }
+
+
 
 .col-11 {
   -webkit-box-flex: 0;
@@ -5861,10 +5862,18 @@ button.close {
 
 .carousel {
   position: relative;
+  
+
+
+
+
+
+
 }
 
 .carousel-inner {
   position: relative;
+  margin-top: 5px;
   width: 100%;
   overflow: hidden;
 }

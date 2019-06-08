@@ -1,41 +1,56 @@
 @model DoxFlorisMVCWeb.ViewModels.ListSpeedrunViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-    @{
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
+}
+
+<h1>Speer van het meer</h1>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create">Create New</a>
     }
 
-    <h1>Index</h1>
-    
-    <p>
-        @if (User.IsInRole("Admin"))
+
+
+</p>
+
+<form asp-controller="Speedrun" asp-action="Snelheid" method="get">
+    <div class="form-actions no-color">
+        <p>
+            
+           
+            <input type="submit" value="Sorteer op snelheid" class="btn btn-primary" />
+            <a asp-controller="Speedrun" asp-action="Index">Terug naar volledige lijst</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Speedruns[0].snelheid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Speedruns[0].datum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Speedruns[0].plank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Speedruns[0].zeil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Speedruns[0].lid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Speedruns)
         {
-            <a asp-action="Create">Create New</a>
-        }
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Speedruns[0].snelheid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Speedruns[0].datum)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Speedruns[0].plank)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Speedruns[0].zeil)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Speedruns[0].lid)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Speedruns) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.snelheid)
@@ -50,14 +65,19 @@
                     @Html.DisplayFor(modelItem => item.zeil)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.lid.Id)
+                    @Html.DisplayFor(modelItem => item.lid.voornaam)  @Html.DisplayFor(modelItem => item.lid.achternaam)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
+
+                    }
+
                 </td>
             </tr>
-}
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
